@@ -14,7 +14,7 @@ var LinkedList = function() {
     }
   };
 
-  list.removeHead = function() {
+list.removeHead = function() {
     var removedVal = list.head.value;
 
     if(list.head === null) {
@@ -36,25 +36,35 @@ var LinkedList = function() {
 
   }
 
-  list.contains = function(target) {
+list.contains = function(target) {
 
-    if(list.head != null){
+      if(list.head !== null){
 
         var recurse = function (obj) {
-          if(obj.value === target){
+          if (obj === null) {
+            return false;
+          }
+          else if(obj.value === target){
             return true;
           }
-          if(obj.next === null){
+          else if(obj.next === null){
             return false;
           }
           return recurse(obj.next);
+        };
+
+        
+        if(list.head.value === target){
+          return true;
+        } else {
+          return recurse(list.head.next);
         }
 
-      recurse(list.head.next);
+      } else {
+        return false;
+      }
 
-    }
-
-  };
+    };
 
   return list;
 };
